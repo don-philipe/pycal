@@ -1,11 +1,12 @@
 
-from Calendar import *
+import Pycal
 
-def main ():
 
-	cal = Calendar()
-	#cal.run ()
+def main():
+	"""
+	"""
+	pycal = Pycal()
+	pycal.run()
 
 if __name__ == "__main__":
-
-	main ()
+	main()
