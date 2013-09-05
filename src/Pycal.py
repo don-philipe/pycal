@@ -18,7 +18,7 @@ class Pycal:
         """
         @param conffile: the configurationfile, is optional
         """
-        self.configurator = Configurator(conffile)
+        self.configurator = Configurator.Configurator(conffile)
         self.calendar_list = self.configurator.configure(self)
 
     def run(self):

@@ -50,7 +50,7 @@ class Configurator:
         remote = self.config_parser.getboolean(section, "remote")
         refresh = self.config_parser.getint(section, "refresh")
         readonly = self.config_parser.getboolean(section, "readonly")
-        return Calendar(name, address, remote, refresh, readonly)
+        return Calendar.Calendar(name, address, remote, refresh, readonly)
 
     def addCalendarsection(self, name, address, refresh, readonly, remote):
         """
