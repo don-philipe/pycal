@@ -1,12 +1,13 @@
 
-import Pycal
+import Configurator
 
 
 def main():
-	"""
-	"""
-	pycal = Pycal.Pycal()
-	pycal.run()
+    """
+    """
+    config = Configurator.Configurator("./pycal.conf")
+    pycal = config.configure()
+    pycal.run()
 
 if __name__ == "__main__":
-	main()
+    main()

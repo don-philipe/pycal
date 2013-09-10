@@ -7,12 +7,6 @@ class Calendar:
     Represents a single calendar.
     """
 
-    __name = "default-calendar"
-    __address = "./" + __name + ".db"
-    __remote = False
-    __refresh = 30   # in min
-    __readonly = False
-
     def __init__(self, name, address, remote, refresh, readonly):
         """
         @param name: a string
@@ -28,7 +22,7 @@ class Calendar:
         self.__name = name
         self.__address = address
         self.__remote = remote
-        self.__refresh = refresh
+        self.__refresh = refresh    # in min
         self.__readonly = readonly
 
     def getName(self):

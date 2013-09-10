@@ -3,44 +3,38 @@
 
 import ConfigParser
 import Calendar
+import Pycal
 
 
 class Configurator:
     """
-    Reads the configuration from file and adjusts the program.
+    Reads the configuration from file and adjusts the program and calendars.
     """
 
     def __init__(self, configfile):
         """
+        Reads the configfile.
         @param configfile: full path of the configurationfile
         """
         self.configfile = configfile
         self.config_parser = ConfigParser.SafeConfigParser()
         self.config_parser.read(configfile)
-        # for testing:
-        print self.config_parser.sections()
 
-    def configure(self, pycal):
+    def configure(self):
         """
-        @param pycal: the programinstance
-        @return: a list of all configured calendars
+        Configures the program and the calendars.
+        @return: a pycal-instance
         """
         calendar_list = []
-        for i, section in self.config_parser.sections():
+        for section in self.config_parser.sections():
             if section == "pycal":
-                self.configurePycal(pycal)
+                interval = self.config_parser.getint("pycal", "backup")
+                db = self.config_parser.get("pycal", "database")
             else:
-                calendar_list.add(self.configureCalendar(section))
-        return calendar_list
+                calendar_list.append(self.__configureCalendar(section))
+        return Pycal.Pycal(interval, db, calendar_list)
 
-    def configurePycal(self, pycal):
-        """
-        @param pycal: the programinstance
-        """
-        pycal.setBackupinterval(self.config_parser.getint("pycal", "backup"))
-        pycal.setDatabase(self.config_parser.get("pycal", "database"))
-
-    def configureCalendar(self, section):
+    def __configureCalendar(self, section):
         """
         @param section: the calendar which will be configured here
         @return: a configured (initialized) Calendar
