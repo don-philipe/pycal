@@ -13,3 +13,11 @@ needed Pythonmodules:
 * caldav	
 	-> ArchLinux: 	python2-caldav
 	-> other:	pip2 install caldav
+
+other things needed:
+* lsb_release
+
+TODO
+----
+
+* todo

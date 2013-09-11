@@ -8,7 +8,7 @@ class Calendar:
     """
 
     __name = "default-calendar"
-    __address = "./" + __name + ".db"
+    __address = "./local.sqlite"
     __remote = False
     __refresh = 30   # in min
     __readonly = False

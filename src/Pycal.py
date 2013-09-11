@@ -18,8 +18,10 @@ class Pycal:
         """
         @param conffile: the configurationfile, is optional
         """
-        self.configurator = Configurator(conffile)
-        self.calendar_list = self.configurator.configure(self)
+        self.configurator = Configurator.Configurator(conffile)
+        self.__calendar_list = self.configurator.configure(self)
+        print self.__backupinterval
+        print self.__database
 
     def run(self):
         """

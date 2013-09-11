@@ -16,14 +16,13 @@ class Configurator:
         """
         self.configfile = configfile
         self.config_parser = ConfigParser.SafeConfigParser()
+        # self.validateConfigurationFile()
         self.config_parser.read(configfile)
-        # for testing:
-        print self.config_parser.sections()
 
     def configure(self, pycal):
         """
         @param pycal: the programinstance
-        @return: a list of all configured calendars
+        @return: a list of all configured calendars, or None if sth is wrong
         """
         calendar_list = []
         for i, section in self.config_parser.sections():
@@ -37,7 +36,11 @@ class Configurator:
         """
         @param pycal: the programinstance
         """
-        pycal.setBackupinterval(self.config_parser.getint("pycal", "backup"))
+        try:
+            backup = self.config_parser.getint("pycal", "backup")
+            pycal.setBackupinterval(backup)
+        except ValueError:
+            print "backup variable is not an integer"
         pycal.setDatabase(self.config_parser.get("pycal", "database"))
 
     def configureCalendar(self, section):
@@ -50,7 +53,7 @@ class Configurator:
         remote = self.config_parser.getboolean(section, "remote")
         refresh = self.config_parser.getint(section, "refresh")
         readonly = self.config_parser.getboolean(section, "readonly")
-        return Calendar(name, address, remote, refresh, readonly)
+        return Calendar.Calendar(name, address, remote, refresh, readonly)
 
     def addCalendarsection(self, name, address, refresh, readonly, remote):
         """
