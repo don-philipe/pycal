@@ -1,27 +1,26 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-import Configurator
-
 
 class Pycal:
     """
     The entry class for the pycal program.
     """
 
-    # holds all calendars configured in the configfile:
-    __calendar_list = []
-    __backupinterval = 30   # days
-    __database = "sqlite"
-
-    def __init__(self, conffile="../pycal.conf"):
+    def __init__(self, interval, db, calendars):
         """
-        @param conffile: the configurationfile, is optional
+        @param interval: the interval a backup of all calendars will
+        be made, in days (integer)
+        @param db: the database which will be used for the calendar
+        (locally), must be a string
+        @param calendars: a list of calendars
         """
-        self.configurator = Configurator.Configurator(conffile)
-        self.__calendar_list = self.configurator.configure(self)
-        print self.__backupinterval
-        print self.__database
+        self.__backupinterval = interval
+        if(db == "sqlite"):
+            self.__database = "sqlite"
+        else:
+            print "no other databases supported right now"
+        self.__calendar_list = calendars
 
     def run(self):
         """
