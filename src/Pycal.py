@@ -15,18 +15,20 @@ class Pycal:
         (locally), must be a string
         @param calendars: a list of calendars
         """
-        self.__backupinterval = interval
-        if(db == "sqlite"):
-            self.__database = "sqlite"
-        else:
-            print "no other databases supported right now"
+        self.setBackupinterval(interval)
+        self.setDatabase(db)
         self.__calendar_list = calendars
 
     def run(self):
         """
         Start the real work.
         """
-        pass
+        print "Backupinterval: " + str(self.__backupinterval)
+        print "Database: " + str(self.__database)
+        if len(self.__calendar_list) == 0:
+            print "No calendars at all"
+        else:
+            print self.__calendar_list[0].__name
 
     def setBackupinterval(self, interval):
         """
@@ -43,4 +45,4 @@ class Pycal:
         if(db == "sqlite"):
             self.__database = "sqlite"
         else:
-            print "no other databases supported right now"
+            print "no other databases supported yet"

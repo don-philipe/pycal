@@ -10,11 +10,10 @@ class DBConnector:
     At the moment only supports sqlite
     """
 
-    __db = ""
-
-    #TODO: in-memory db?
+    #TODO: in-memory db necessary?
     def __init__(self, dbfile):
         """
+        Opens a connection to the database.
         @param dbfile: the databasefile
         """
         self.__db = dbfile
@@ -40,6 +39,11 @@ class DBConnector:
         c = self.__conn.cursor()
         c.execute('''DROP TABLE ?''', name)
         self.__conn.commit()
+
+    def changeCalendar(self):
+        """
+        """
+        pass
 
     def closeConnection(self):
         """
