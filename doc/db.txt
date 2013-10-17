@@ -1,33 +1,33 @@
 The database has the following tables:
 
-* cal_calendar
-* cal_events
-* cal_alarms
-* cal_todos
+* calendars
+* events
+* alarms
+* todos
 
 
-cal_calendars:
+calendars:
 
 cal_id | cal_name | description
 -------+----------+------------
 TEXT   | TEXT     | TEXT
 
 
-cal_events:
+events:
 
 event_id | cal_id | event_start | event_end | title | description | alarm_id
 ---------+--------+-------------+-----------+-------+-------------+---------
 TEXZ     | TEXT   | INTEGER     | INTEGER   | TEXT  | TEXT        | TEXT
 
 
-cal_alarms:
+alarms:
 
 alarm_id | start   | last_ack
 ---------+---------+---------
 TEXT     | INTEGER | INTEGER
 
 
-cal_todos:
+todos:
 
 todo_id | cal_id | title | description | alarm_id
 --------+--------+-------+-------------+---------
